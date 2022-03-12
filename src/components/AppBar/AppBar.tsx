@@ -3,6 +3,7 @@ import { MdLogout, MdMenu } from 'react-icons/md';
 
 import StyledAppBar from './styled';
 import Button from 'components/Button/Button';
+import ButtonToggleTheme from 'components/ButtonToggleTheme/ButtonToggleTheme';
 
 const AppBar = ({ dark }: { dark: boolean; }) => {
 
@@ -19,15 +20,17 @@ const AppBar = ({ dark }: { dark: boolean; }) => {
             type: isClose ? 'OPEN_DRAWER' : 'CLOSE_DRAWER'
           }) }
           icon={ <MdMenu /> }
-          color='warning'
+          text
 
         />
       </div>
       <div>
+        <ButtonToggleTheme />
         <Button
           label='Logout'
           icon={ <MdLogout /> }
-          color='success'
+          color='error'
+          text
           onDoubleClick={ () => window.location.href = '/login' }
         />
 
