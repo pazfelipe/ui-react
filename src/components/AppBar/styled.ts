@@ -16,7 +16,7 @@ padding: 0 10px;
 }
 
 &.dark-theme {
-  background-color: var(--dark-blue);
+  // background-color: var(--dark-blue);
 }
 `;
 
