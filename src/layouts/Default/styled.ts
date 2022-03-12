@@ -15,4 +15,9 @@ background-color: var(--soft-blue);
 }
 `;
 
+export const StyleBody = styled.main`
+width: 100%;
+height: 100vh;
+`;
+
 export default StyledLayout;
