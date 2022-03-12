@@ -20,4 +20,11 @@ padding: 0 10px;
 }
 `;
 
-export default StyledAppBar;
+const StyledExtended = styled(StyledAppBar)`
+box-shadow: ${(props: { $mobile: boolean; }) =>
+    props.$mobile
+      ? 'none'
+      : '0px 2px 4px rgba(0, 0, 0, 0.25)'};
+`;
+
+export default StyledExtended;

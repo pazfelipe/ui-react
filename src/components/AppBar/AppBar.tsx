@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { MdLogout, MdMenu } from 'react-icons/md';
 
-import StyledAppBar from './styled';
 import Button from 'components/Button/Button';
 import ButtonToggleTheme from 'components/ButtonToggleTheme/ButtonToggleTheme';
+import StyledExtended from './styled';
+
 
 const AppBar = ({ dark }: { dark: boolean; }) => {
 
@@ -13,8 +14,9 @@ const AppBar = ({ dark }: { dark: boolean; }) => {
   const isNotMobile = window.innerWidth > 768;
 
   return (
-    <StyledAppBar
+    <StyledExtended
       className={ dark ? 'dark-theme' : '' }
+      $mobile={ isNotMobile }
     >
       <div>
         <Button
@@ -42,7 +44,7 @@ const AppBar = ({ dark }: { dark: boolean; }) => {
         </div>
       }
 
-    </StyledAppBar>
+    </StyledExtended>
   );
 };
 
