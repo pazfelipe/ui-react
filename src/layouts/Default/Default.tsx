@@ -1,10 +1,20 @@
-import AppBar from 'components/AppBar/AppBar';
-import Drawer from 'components/Drawer/Drawer';
-import MainContainer from 'components/MainContainer/MainContainer';
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ChildrenProps } from '../../interfaces/ChildrenProps';
-import StyledLayout from './styled';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef
+  } from 'react' ;
+  
+  import {
+  useDispatch,
+  useSelector
+  } from 'react-redux' ;
+  
+  import { ChildrenProps } from 'interfaces/ChildrenProps'               ;
+  import   AppBar          from 'components/AppBar/AppBar'               ;
+  import   Drawer          from 'components/Drawer/Drawer'               ;
+  import   MainContainer   from 'components/MainContainer/MainContainer' ;
+  import   StyledLayout    from './styled'                               ;
 
 const DefaultLayout = ({ children }: ChildrenProps) => {
 
