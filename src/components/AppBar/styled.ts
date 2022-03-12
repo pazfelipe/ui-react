@@ -9,6 +9,12 @@ align-items: center;
 box-sizing: border-box;
 padding: 0 10px;
 
+& > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 &.dark-theme {
   background-color: var(--dark-blue);
 }
