@@ -14,7 +14,7 @@ import { ChildrenProps } from 'interfaces/ChildrenProps';
 import AppBar from 'components/AppBar/AppBar';
 import Drawer from 'components/Drawer/Drawer';
 import MainContainer from 'components/MainContainer/MainContainer';
-import StyledLayout from './styled';
+import StyledLayout, { StyleBody } from './styled';
 
 const DefaultLayout = ({ children }: ChildrenProps) => {
 
@@ -24,16 +24,11 @@ const DefaultLayout = ({ children }: ChildrenProps) => {
     theme: { dark: boolean; };
   }) => state.theme);
 
-  const isDrawerClosed = useSelector((state: {
-    drawer: { close: boolean; };
-  }) => state.drawer.close);
-
   const elementRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleTouchStart = (event: TouchEvent) => {
     touchstartX.current = event.changedTouches[ 0 ].screenX;
   };
-
 
   const touchstartX = useRef(0);
   const touchendX = useRef(0);
@@ -44,31 +39,35 @@ const DefaultLayout = ({ children }: ChildrenProps) => {
         type: 'CLOSE_DRAWER',
       });
     };
+
     if (touchendX.current > touchstartX.current + 50) {
       dispatch({
         type: 'OPEN_DRAWER',
       });
     };
+
   }, [ dispatch ]);
 
   const handleTouchEnd = useCallback((event: TouchEvent) => {
+
     touchendX.current = event.changedTouches[ 0 ].screenX;
     handleGesture();
+
   }, [ handleGesture ]);
 
   useEffect(() => {
-    const ef = elementRef?.current;
+    const ef = elementRef.current;
+
     if (elementRef) {
-
-      ef?.addEventListener('touchstart', handleTouchStart);
-
-      ef?.addEventListener('touchend', handleTouchEnd);
+      ef.addEventListener('touchstart', handleTouchStart);
+      ef.addEventListener('touchend', handleTouchEnd);
     }
 
     return () => {
       ef.removeEventListener('touchstart', handleTouchStart);
       ef.removeEventListener('touchend', handleTouchEnd);
     };
+
   }, [ handleTouchEnd ]);
 
   useLayoutEffect(() => {
@@ -85,27 +84,12 @@ const DefaultLayout = ({ children }: ChildrenProps) => {
       ref={ elementRef }
     >
       <Drawer />
-      <div style={ { width: '100%', height: '100vh' } }>
-
+      <StyleBody>
         <AppBar dark={ theme.dark } />
-
-        <MainContainer
-          dark={ theme.dark }
-        >
-
-          {
-            isDrawerClosed &&
-            <button
-              onClick={ () => dispatch({
-                type: 'OPEN_DRAWER'
-              }) }
-            >
-              Open drawer
-            </button>
-          }
+        <MainContainer dark={ theme.dark }>
           { children }
         </MainContainer>
-      </div>
+      </StyleBody>
     </StyledLayout>
   );
 };
