@@ -1,9 +1,9 @@
-import { ButtonType } from 'types/Button';
-import StyledButton from './styled';
-import { AiOutlineLoading } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate      } from 'react-router-dom';
+import { AiOutlineLoading } from 'react-icons/ai'  ;
+import { ButtonType       } from 'types/Button'    ;
+import   StyledButton       from './styled'        ;
 
-const SpanLabel = ({ label }: { label: string | undefined; }) => {
+export const SpanLabel = ({ label }: { label?: string; }) => {
   return label
     ? <span>{ label }</span>
     : null;
