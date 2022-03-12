@@ -3,40 +3,40 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef
-  } from 'react' ;
-  
-  import {
+} from 'react';
+
+import {
   useDispatch,
   useSelector
-  } from 'react-redux' ;
-  
-  import { ChildrenProps } from 'interfaces/ChildrenProps'               ;
-  import   AppBar          from 'components/AppBar/AppBar'               ;
-  import   Drawer          from 'components/Drawer/Drawer'               ;
-  import   MainContainer   from 'components/MainContainer/MainContainer' ;
-  import   StyledLayout    from './styled'                               ;
+} from 'react-redux';
+
+import { ChildrenProps } from 'interfaces/ChildrenProps';
+import AppBar from 'components/AppBar/AppBar';
+import Drawer from 'components/Drawer/Drawer';
+import MainContainer from 'components/MainContainer/MainContainer';
+import StyledLayout from './styled';
 
 const DefaultLayout = ({ children }: ChildrenProps) => {
 
   const dispatch = useDispatch();
-  const theme = useSelector((state: { theme: { dark: boolean; }; }) => state.theme);
-  const isDrawerClosed = useSelector((state: { drawer: { close: boolean; }; }) => state.drawer.close);
+
+  const theme = useSelector((state: {
+    theme: { dark: boolean; };
+  }) => state.theme);
+
+  const isDrawerClosed = useSelector((state: {
+    drawer: { close: boolean; };
+  }) => state.drawer.close);
 
   const elementRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  const handleClick = () => {
-    dispatch({
-      type: 'TOGGLE_THEME',
-    });
-  };
 
   const handleTouchStart = (event: TouchEvent) => {
     touchstartX.current = event.changedTouches[ 0 ].screenX;
   };
 
 
-  let touchstartX = useRef(0);
-  let touchendX = useRef(0);
+  const touchstartX = useRef(0);
+  const touchendX = useRef(0);
 
   const handleGesture = useCallback(() => {
     if (touchendX.current + 50 < touchstartX.current) {
@@ -92,11 +92,7 @@ const DefaultLayout = ({ children }: ChildrenProps) => {
         <MainContainer
           dark={ theme.dark }
         >
-          <button
-            onClick={ handleClick }
-          >
-            { theme.dark ? 'Light' : 'Dark' }
-          </button>
+
           {
             isDrawerClosed &&
             <button
