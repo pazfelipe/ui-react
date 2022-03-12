@@ -10,6 +10,8 @@ const AppBar = ({ dark }: { dark: boolean; }) => {
   const isClose = useSelector((state: { drawer: { close: boolean; }; }) => state.drawer.close);
   const dispatch = useDispatch();
 
+  const isNotMobile = window.innerWidth > 768;
+
   return (
     <StyledAppBar
       className={ dark ? 'dark-theme' : '' }
@@ -24,17 +26,22 @@ const AppBar = ({ dark }: { dark: boolean; }) => {
 
         />
       </div>
-      <div>
-        <ButtonToggleTheme />
-        <Button
-          label='Logout'
-          icon={ <MdLogout /> }
-          color='error'
-          text
-          onDoubleClick={ () => window.location.href = '/login' }
-        />
 
-      </div>
+      {
+        isNotMobile &&
+        <div>
+          <ButtonToggleTheme />
+          <Button
+            label='Logout'
+            icon={ <MdLogout /> }
+            color='error'
+            text
+            onDoubleClick={ () => window.location.href = '/login' }
+          />
+
+        </div>
+      }
+
     </StyledAppBar>
   );
 };
