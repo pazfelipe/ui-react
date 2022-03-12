@@ -1,6 +1,7 @@
 import AppBar from 'components/AppBar/AppBar';
 import Drawer from 'components/Drawer/Drawer';
 import MainContainer from 'components/MainContainer/MainContainer';
+import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChildrenProps } from '../../interfaces/ChildrenProps';
 import StyledLayout from './styled';
@@ -16,6 +17,14 @@ const DefaultLayout = ({ children }: ChildrenProps) => {
       type: 'TOGGLE_THEME',
     });
   };
+
+  useLayoutEffect(() => {
+    if (window.innerWidth < 768) {
+      dispatch({
+        type: 'CLOSE_DRAWER',
+      });
+    }
+  }, [ dispatch ]);
 
   return (
     <StyledLayout
